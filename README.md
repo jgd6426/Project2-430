@@ -3,8 +3,11 @@ Create a satisfying and engaging web application that users would actually use i
 The application must have user accounts and a use for those user accounts.
  
 ### What is the intended purpose of the application?
+Task and Time Management Tool. Users can create their own post-it notes on the screen with tasks to do.
+Each post-it will have a task name, 
 
 ### What work has been completed for this milestone?
+Honestly, not a lot. It took way too long to come up with what project I wanted to do. :/
 
 ### What work is left, and what is the plan to complete it? What does the timeline/roadmap look like to finish on time?
 

@@ -3,71 +3,71 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 /* Add our React components for our Domo app */
-const handleDomo = (e) => {
+const handleNote = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const name = e.target.querySelector('#domoName').value;
-    const age = e.target.querySelector('#domoAge').value;
-    const job = e.target.querySelector('#domoJob').value;
+    const title = e.target.querySelector('#noteTitle').value;
+    const due = e.target.querySelector('#noteDue').value;
+    const info = e.target.querySelector('#noteInfo').value;
 
-    if (!name || !age || !job) {
-        helper.handleError('All fields are required!');
+    if (!title) {
+        helper.handleError('Title is required!');
         return false;
     }
 
-    helper.sendPost(e.target.action, {name, age, job}, loadDomosFromServer);
+    helper.sendPost(e.target.action, {title, due, info}, loadNotesFromServer);
 
     return false;
 };
 
 /* Create a functional component to create our Add Domo form.
     Similar to the signup and login forms. */
-const DomoForm = (props) => {
+const NoteForm = (props) => {
     return (
-        <form id="domoForm" 
-            onSubmit={handleDomo} 
-            name="domoForm" 
+        <form id="noteForm" 
+            onSubmit={handleNote} 
+            name="noteForm" 
             action="/maker" 
             method="POST" 
-            className="domoForm"
+            className="noteForm"
         >
-            <label htmlFor="name">Name:</label>
-            <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
-            <label htmlFor="age">Age:</label>
-            <input id="domoAge" type="number" min="0" name="age"/>
-            <label htmlFor="job">Job:</label>
-            <input id="domoJob" type="text" name="job" placeholder="Domo Job"/>
-            <input className="makeDomoSubmit" type="submit" value="Make Domo"/>
+            <label htmlFor="title">Title:</label>
+            <input id="noteTitle" type="text" name="title" placeholder="Note Title"/>
+            <label htmlFor="due">Due:</label>
+            <input id="noteDue" type="text" name="due" placeholder="Due"/>
+            <label htmlFor="info">Info:</label>
+            <input id="noteInfo" type="text" name="info" placeholder="Info"/>
+            <input className="makeNoteSubmit" type="submit" value="Make Note"/>
         </form>
     );
 };
 
 /* Create a component to display the list of Domos */
-const DomoList = (props) => {
-    if (props.domos.length === 0) {
+const NoteList = (props) => {
+    if (props.notes.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Domos Yet!</h3>
+            <div className="noteList">
+                <h3 className="emptyDomo">No Notes Yet!</h3>
             </div>
         );
     }
 
-    const domoNodes = props.domos.map(domo => {
+    const noteNodes = props.domos.map(note => {
         return (
-            <div key={domo._id} className="domo">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="domoName"> Name: {domo.name} </h3>
-                <h3 className="domoAge"> Age: {domo.age} </h3>
-                <h3 className="domoJob"> Job: {domo.job} </h3>
-                {/* <h3 className="domoJob"> Job: {domo.job} </h3> */}
+            <div key={note._id} className="note">
+                {}
+                <h3 className="noteTitle"> Title: {note.title} </h3>
+                <h3 className="noteDue"> Duee: {note.due} </h3>
+                <h3 className="noteInfo"> Info: {note.info} </h3>
+                {}
             </div>
         );
     });
 
     return (
-        <div className="domoList">
-            {domoNodes}
+        <div className="noteList">
+            {noteNodes}
         </div>
     );
 };
@@ -75,12 +75,12 @@ const DomoList = (props) => {
 /* Load the list of domos from the server.
     When it gets a new list back, it should rerender the domoList component
     so that it is up to date with the data. */
-const loadDomosFromServer = async () => {
-    const response = await fetch('/getDomos');
+const loadNotesFromServer = async () => {
+    const response = await fetch('/getNotes');
     const data = await response.json();
     ReactDOM.render(
-        <DomoList domos={data.domos} />,
-        document.getElementById('domos')
+        <NoteList notes={data.notes} />,
+        document.getElementById('notes')
     );
 };
 
@@ -88,16 +88,16 @@ const loadDomosFromServer = async () => {
     and have the client request the list of domos from the server. */
 const init = () => {
     ReactDOM.render(
-        <DomoForm />,
-        document.getElementById('makeDomo')
+        <NoteForm />,
+        document.getElementById('makeNote')
     );
 
     ReactDOM.render(
-        <DomoList domos={[]} />,
-        document.getElementById('domos')
+        <NoteList notes={[]} />,
+        document.getElementById('notes')
     );
 
-    loadDomosFromServer();
+    loadNotesFromServer();
 };
 
 window.onload = init;
