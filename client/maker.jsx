@@ -89,7 +89,7 @@ const loadNotesFromServer = async () => {
 const init = () => {
     ReactDOM.render(
         <NoteForm />,
-        document.getElementById('makeNote')
+        document.getElementById('makeNotes')
     );
 
     ReactDOM.render(

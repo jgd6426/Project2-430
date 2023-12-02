@@ -41,7 +41,7 @@ const getNotes = async (req, res) => {
     const query = { owner: req.session.account._id };
     const docs = await Note.find(query).select('title due info').lean().exec();
 
-    return res.json({ ntoes: docs });
+    return res.json({ notes: docs });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error retrieving notes.' });
