@@ -2,7 +2,7 @@
     font-family: poetsenOne;
     src: url("img/PoetsenOne-Regular.ttf");
 }
-#loginForm {
+#loginForm, #signupForm {
     width: 500px;
     height: 640px;
     border: none;
@@ -16,6 +16,7 @@
     box-shadow: 0px 14px 20px 2px rgba(0, 0, 0, 0.5);
     font-family: poetsenOne;
     color: #171C73;
+    margin-left: 20vw;
 }
 .title {
     color: #171C73;
@@ -67,17 +68,17 @@
     position: absolute;
 }
 #userS{
-    top: 320px;
+    top: 290px;
 }
 #passS{
-    top: 390px;
+    top: 360px;
 }
 #pass2{
-    top: 450px;
+    top: 430px;
 }
 .messageS{
     position: absolute;
-    top: 500px;
+    top: 475px;
 }
 #userS::placeholder, #passS::placeholder, #pass2::placeholder{
     color: #C8CAEC;
@@ -102,4 +103,63 @@
 }
 .formSubmit:active{
     cursor: pointer;
+}
+
+/* App Nav */
+#topNav {
+    width: 200px;
+    height: 500px;
+    background-color: #9FA3E7;
+    position: absolute;
+    border-radius: 0px 14px 0px 0px;
+    padding: 0px 20px;
+    top: 0;
+    left: 0;
+    font-family: poetsenOne;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#navTitle {
+    font-family: Modak;
+    font-size: 40px;
+    color: #171C73;
+    position: absolute;
+    top: -25px;
+}
+#userPhoto {
+    width: 120px;
+    height: 120px;
+    border-radius: 14px;
+    box-shadow: 0px 14px 20px 2px rgba(0, 0, 0, 0.5);
+    background-color: #F2F2FA;
+    position: absolute;
+    top: 90px;
+}
+#pin {
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 80px;
+}
+#userName {
+    color: #F2F2FA;
+    font-size: 24px;
+    position: absolute;
+    top: 210px;
+}
+#bottomNav {
+    width: 200px;
+    height: 440px;
+    background-color: #ADB0EE;
+    position: absolute;
+    border-radius: 0px 0px 14px 0px;
+    padding: 0px 20px;
+    top: 280px;
+    bottom: 0;
+    left: 0;
+    font-family: poetsenOne;
 }

@@ -7,8 +7,8 @@ const handleLogin = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const username = e.target.querySelector('#user').value;
-    const pass = e.target.querySelector('#pass').value;
+    const username = e.target.querySelector('#userL').value;
+    const pass = e.target.querySelector('#passL').value;
 
     if (!username || !pass) {
         helper.handleError('Please fill out all information');
@@ -25,8 +25,8 @@ const handleSignup = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const username = e.target.querySelector('#user').value;
-    const pass = e.target.querySelector('#pass').value;
+    const username = e.target.querySelector('#userS').value;
+    const pass = e.target.querySelector('#passS').value;
     const pass2 = e.target.querySelector('#pass2').value;
 
     if (!username || !pass || !pass2) {
@@ -47,6 +47,9 @@ const handleSignup = (e) => {
 /* Create our React components that will use the event handlers to render the login page*/
 const LoginWindow = (props) => {
     return (
+        // <nav>
+        //     <div class="navlink"><a id="signupButton" href="/signup">Sign up</a></div>
+        // </nav>,
         <form id="loginForm" 
             name="loginForm" 
             onSubmit={handleLogin} 
@@ -58,18 +61,22 @@ const LoginWindow = (props) => {
             <input id="userL" type="text" name="usernameL" placeholder="Username" />
             <input id="passL" type="password" name="passL" placeholder="Password" />
 
-            <div className='messageL' id="message" class='hidden'>
+            <div id="message" class='messageL hidden'>
                 <h3><span id="errorMessage"></span></h3>
             </div>
 
             <input className="formSubmit" type="submit" value="Log In" />
         </form>
+
     );
 };
 
 /* Similar to LoginWindow() to render the signup page */
 const SignupWindow = (props) => {
     return (
+        // <nav>
+        //     <div class="navlink"><a id="loginButton" href="/login">Login</a></div>
+        // </nav>,
         <form id="signupForm" 
             name="signupForm" 
             onSubmit={handleSignup} 
@@ -82,7 +89,7 @@ const SignupWindow = (props) => {
             <input id="passS" type="password" name="passS" placeholder="Password" />
             <input id="pass2" type="password" name="pass2" placeholder="Retype Password" />
 
-            <div className='messageS' id="message" class='hidden'>
+            <div id="message" class='messageS hidden'>
                 <h3><span id="errorMessage"></span></h3>
             </div>
 
@@ -102,7 +109,7 @@ const init = () => {
     loginButton.addEventListener('click', (e) => {
         e.preventDefault();
         ReactDOM.render(<LoginWindow />, 
-            docunent.getElementById('content'));
+            document.getElementById('content'));
         return false;
     });
 
