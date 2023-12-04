@@ -11,7 +11,7 @@ const handleLogin = (e) => {
     const pass = e.target.querySelector('#pass').value;
 
     if (!username || !pass) {
-        helper.handleError('Username or password is empty!');
+        helper.handleError('Please fill out all information');
         return false;
     }
 
@@ -30,12 +30,12 @@ const handleSignup = (e) => {
     const pass2 = e.target.querySelector('#pass2').value;
 
     if (!username || !pass || !pass2) {
-        helper.handleError('All fields are required!');
+        helper.handleError('Please fill out all information');
         return false;
     }
 
     if (pass != pass2) {
-        helper.handleError('Passwords do not match!');
+        helper.handleError('Oops! Your passwords need to match');
         return false;
     }
 
@@ -54,10 +54,14 @@ const LoginWindow = (props) => {
             method="POST" 
             className="mainForm"
         >
-            <label htmlFor="username"></label>
-            <input id="user" type="text" name="username" placeholder="Username" />
-            <label htmlFor="pass"></label>
-            <input id="pass" type="password" name="pass" placeholder="Password" />
+            <label class="title">Log In</label>
+            <input id="userL" type="text" name="usernameL" placeholder="Username" />
+            <input id="passL" type="password" name="passL" placeholder="Password" />
+
+            <div className='messageL' id="message" class='hidden'>
+                <h3><span id="errorMessage"></span></h3>
+            </div>
+
             <input className="formSubmit" type="submit" value="Log In" />
         </form>
     );
@@ -73,12 +77,15 @@ const SignupWindow = (props) => {
             method="POST" 
             className="mainForm"
         >
-            <label htmlFor="username"></label>
-            <input id="user" type="text" name="username" placeholder="Username" />
-            <label htmlFor="pass"></label>
-            <input id="pass" type="password" name="pass" placeholder="Password" />
-            <label htmlFor="pass">Password: </label>
+            <label class="title">Sign Up</label>
+            <input id="userS" type="text" name="usernameS" placeholder="Username" />
+            <input id="passS" type="password" name="passS" placeholder="Password" />
             <input id="pass2" type="password" name="pass2" placeholder="Retype Password" />
+
+            <div className='messageS' id="message" class='hidden'>
+                <h3><span id="errorMessage"></span></h3>
+            </div>
+
             <input className="formSubmit" type="submit" value="Sign Up" />
         </form>
     );
