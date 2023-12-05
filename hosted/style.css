@@ -242,4 +242,107 @@ body {
 .makeNoteBtn:hover {
     cursor: pointer;
 }
-
+/* Note Making Form */
+#makeNotes {
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+#noteForm {
+    width: 500px;
+    height: 500px;
+    border: none;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+    background-color: #D9DAFD;
+    box-shadow: 0px 14px 20px 2px rgba(0, 0, 0, 0.5);
+    font-family: poetsenOne;
+    color: #171C73;
+    position: absolute;
+}
+#noteForm input {
+    outline: none;
+    font-family: poetsenOne;
+}
+/* #noteForm input::placeholder {
+    color: #C8CAEC;
+    background-color: #D9DAFD;
+}
+#noteForm input:focus, #noteForm input:active {
+    color: #C8CAEC;
+    background-color: #F2F2FA;
+} */
+#noteTitle {
+    width: 80%;
+    height: 80px;
+    font-size: 60px;
+    text-align: center;
+    border-radius: 10px;
+    color: #171C73;
+    background-color: #D9DAFD;
+    border: 4px dotted #F2F2FA;
+    padding: 10px 20px;
+    position: absolute;
+    top: 50px;
+}
+#noteDue {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #D9DAFD;
+    border: 4px dotted #F2F2FA;
+    color: #171C73;
+    padding: 10px 20px;
+    position: absolute;
+    top: 410px;
+}
+#noteInfo {
+    width: 80%;
+    height: 180px;
+    outline: none;
+    font-family: poetsenOne;
+    resize: none;
+    text-align: fill;
+    font-size: 20px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-wrap: wrap;
+    border-radius: 10px;
+    background-color: #D9DAFD;
+    border: 4px dotted #F2F2FA;
+    color: #171C73;
+    padding: 10px 20px;
+    position: absolute;
+    top: 180px;
+}
+.makeNoteSubmit {
+    position: absolute;
+    top: -30px;
+    padding: 20px 18px;
+    color:#F2F2FA;
+    background-color: rgba(23, 27, 115, 0.8);
+    border-radius: 100px;
+    border: none;
+}
+.makeNoteSubmit:hover {
+    cursor: pointer;
+}
+#message {
+    color: #171C73;
+    font-family: poetsenOne;
+    text-align: center;
+    background-color: #F2F2FA;
+    border: none;
+    border-radius: 100px;
+    padding: 0px 20px;
+    position: absolute;
+    top: 500px;
+}

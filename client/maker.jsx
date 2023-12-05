@@ -32,13 +32,13 @@ const NoteForm = (props) => {
             method="POST" 
             className="noteForm"
         >
-            <label htmlFor="title">Title:</label>
+            {/* <label htmlFor="title">Title:</label> */}
             <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
-            <label htmlFor="due">Due:</label>
+            {/* <label htmlFor="due">Due:</label> */}
             <input id="noteDue" type="text" name="due" placeholder="Due" autoComplete="off"/>
-            <label htmlFor="info">Info:</label>
-            <input id="noteInfo" type="text" name="info" placeholder="Info" autoComplete="off"/>
-            <input className="makeNoteSubmit" type="submit" value="Make Note"/>
+            {/* <label htmlFor="info">Info:</label> */}
+            <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea>
+            <input className="makeNoteSubmit" type="submit" value="Pin"/>
         </form>
     );
 };
@@ -48,12 +48,12 @@ const NoteList = (props) => {
     if (props.notes.length === 0) {
         return (
             <div className="noteList">
-                <h3 className="emptyDomo">No Notes Yet!</h3>
+                <h3 className="emptyNote">No Notes Yet!</h3>
             </div>
         );
     }
 
-    const noteNodes = props.domos.map(note => {
+    const noteNodes = props.notes.map(note => {
         return (
             <div key={note._id} className="note">
                 {}
