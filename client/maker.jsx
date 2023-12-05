@@ -33,11 +33,11 @@ const NoteForm = (props) => {
             className="noteForm"
         >
             <label htmlFor="title">Title:</label>
-            <input id="noteTitle" type="text" name="title" placeholder="Note Title"/>
+            <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
             <label htmlFor="due">Due:</label>
-            <input id="noteDue" type="text" name="due" placeholder="Due"/>
+            <input id="noteDue" type="text" name="due" placeholder="Due" autoComplete="off"/>
             <label htmlFor="info">Info:</label>
-            <input id="noteInfo" type="text" name="info" placeholder="Info"/>
+            <input id="noteInfo" type="text" name="info" placeholder="Info" autoComplete="off"/>
             <input className="makeNoteSubmit" type="submit" value="Make Note"/>
         </form>
     );

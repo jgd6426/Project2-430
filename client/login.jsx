@@ -47,19 +47,19 @@ const handleSignup = (e) => {
 /* Create our React components that will use the event handlers to render the login page*/
 const LoginWindow = (props) => {
     return (
-        // <nav>
-        //     <div class="navlink"><a id="signupButton" href="/signup">Sign up</a></div>
-        // </nav>,
+        <nav id="welcomeForm">
+            <div class="navlink"><a id="signupButton" href="/signup">Sign up</a></div>
+        </nav>,
         <form id="loginForm" 
             name="loginForm" 
             onSubmit={handleLogin} 
             action="/login" 
             method="POST" 
-            className="mainForm"
+            className="mainForm"j
         >
             <label class="title">Log In</label>
-            <input id="userL" type="text" name="usernameL" placeholder="Username" />
-            <input id="passL" type="password" name="passL" placeholder="Password" />
+            <input id="userL" type="text" name="usernameL" placeholder="Username" autoComplete="off" />
+            <input id="passL" type="password" name="passL" placeholder="Password" autoComplete="off" />
 
             <div id="message" class='messageL hidden'>
                 <h3><span id="errorMessage"></span></h3>
@@ -85,9 +85,9 @@ const SignupWindow = (props) => {
             className="mainForm"
         >
             <label class="title">Sign Up</label>
-            <input id="userS" type="text" name="usernameS" placeholder="Username" />
-            <input id="passS" type="password" name="passS" placeholder="Password" />
-            <input id="pass2" type="password" name="pass2" placeholder="Retype Password" />
+            <input id="userS" type="text" name="usernameS" placeholder="Username" autoComplete="off" />
+            <input id="passS" type="password" name="passS" placeholder="Password" autoComplete="off" />
+            <input id="pass2" type="password" name="pass2" placeholder="Retype Password" autoComplete="off" />
 
             <div id="message" class='messageS hidden'>
                 <h3><span id="errorMessage"></span></h3>
