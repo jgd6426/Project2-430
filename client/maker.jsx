@@ -1,8 +1,9 @@
 const helper = require('./helper.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
+const useState = require('react').useState;
 
-/* Add our React components for our Domo app */
+/* Add our React components for our Note app */
 const handleNote = (e) => {
     e.preventDefault();
     helper.hideError();
@@ -16,6 +17,7 @@ const handleNote = (e) => {
         return false;
     }
 
+    helper.closeForm();
     helper.sendPost(e.target.action, {title, due, info}, loadNotesFromServer);
 
     return false;
@@ -24,19 +26,29 @@ const handleNote = (e) => {
 /* Create a functional component to create our Add Domo form.
     Similar to the signup and login forms. */
 const NoteForm = (props) => {
+    const [openForm, setOpenForm] = useState(false);
+
     return (
-        <form id="noteForm" 
-            onSubmit={handleNote} 
-            name="noteForm" 
-            action="/maker" 
-            method="POST" 
-            className="noteForm"
-        >
-            <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
-            <input id="noteDue" type="text" name="due" placeholder="Due" autoComplete="off"/>
-            <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea>
-            <input className="makeNoteSubmit" type="submit" value="Pin"/>
-        </form>
+        <div className="noteFormArea">
+            <button className="makeNoteBtn" onClick={() => setOpenForm(!openForm)}>+</button>
+            {openForm && <form id="noteForm" 
+                onSubmit={handleNote} 
+                closeForm={() => setOpenForm(false)}
+                name="noteForm" 
+                action="/maker" 
+                method="POST" 
+                className="noteForm"
+            >
+                <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
+                <input id="noteDue" type="text" name="due" placeholder="Deadline" autoComplete="off"/>
+                <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea>
+                <input className="makeNoteSubmit" type="submit" value="Pin"/>
+
+                <div id="message" class='appMessage hidden'>
+                    <h3><span id="errorMessage"></span></h3>
+                </div>
+            </form>}
+        </div>
     );
 };
 
@@ -55,7 +67,7 @@ const NoteList = (props) => {
             <div key={note._id} className="note">
                 {}
                 <h3 className="noteTitle"> Title: {note.title} </h3>
-                <h3 className="noteDue"> Duee: {note.due} </h3>
+                <h3 className="noteDue"> Due: {note.due} </h3>
                 <h3 className="noteInfo"> Info: {note.info} </h3>
                 {}
             </div>

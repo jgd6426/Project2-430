@@ -245,7 +245,7 @@ body {
 /* Note Making Form */
 #makeNotes {
     width: 80vw;
-    height: 80vh;
+    height: 95vh;
     margin-left: 250px;
     position: absolute;
     display: flex;
@@ -268,23 +268,17 @@ body {
     font-family: poetsenOne;
     color: #171C73;
     position: absolute;
+    top: 10%;
+    left: 25%;
 }
 #noteForm input {
     outline: none;
     font-family: poetsenOne;
 }
-/* #noteForm input::placeholder {
-    color: #C8CAEC;
-    background-color: #D9DAFD;
-}
-#noteForm input:focus, #noteForm input:active {
-    color: #C8CAEC;
-    background-color: #F2F2FA;
-} */
 #noteTitle {
     width: 80%;
     height: 80px;
-    font-size: 60px;
+    font-size: 50px;
     text-align: center;
     border-radius: 10px;
     color: #171C73;
@@ -293,6 +287,7 @@ body {
     padding: 10px 20px;
     position: absolute;
     top: 50px;
+    resize: none;
 }
 #noteDue {
     width: 80%;
@@ -337,14 +332,23 @@ body {
 .makeNoteSubmit:hover {
     cursor: pointer;
 }
-#errorMessage {
+.appMessage {
+    width: 80%;
+    height: 40px;
     color: #171C73;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin: 0px 10px;
+    /* border: 1px solid red; */
+    top: 10px;
+}
+/* #errorMessage {
+    color: #fc1870;
     font-family: poetsenOne;
     text-align: center;
     border: none;
     border-radius: 100px;
     padding: 10px 20px;
-    position: absolute;
-    top: 500px;
-}
+} */
 
