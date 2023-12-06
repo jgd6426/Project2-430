@@ -32,11 +32,8 @@ const NoteForm = (props) => {
             method="POST" 
             className="noteForm"
         >
-            {/* <label htmlFor="title">Title:</label> */}
             <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
-            {/* <label htmlFor="due">Due:</label> */}
             <input id="noteDue" type="text" name="due" placeholder="Due" autoComplete="off"/>
-            {/* <label htmlFor="info">Info:</label> */}
             <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea>
             <input className="makeNoteSubmit" type="submit" value="Pin"/>
         </form>
