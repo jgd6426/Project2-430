@@ -335,14 +335,14 @@ body {
 .makeNoteSubmit:hover {
     cursor: pointer;
 }
-#message {
+#errorMessage {
     color: #171C73;
     font-family: poetsenOne;
     text-align: center;
-    background-color: #F2F2FA;
     border: none;
     border-radius: 100px;
-    padding: 0px 20px;
+    padding: 10px 20px;
     position: absolute;
     top: 500px;
 }
+
