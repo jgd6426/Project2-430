@@ -153,6 +153,7 @@ body {
 #pin {
     width: 20px;
     height: 20px;
+    font-family: poetsenOne;
     border-radius: 100px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     background-color: rgba(0, 0, 0, 0.7);
@@ -328,6 +329,7 @@ body {
     background-color: rgba(23, 27, 115, 0.8);
     border-radius: 100px;
     border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .makeNoteSubmit:hover {
     cursor: pointer;
@@ -343,12 +345,34 @@ body {
     /* border: 1px solid red; */
     top: 10px;
 }
-/* #errorMessage {
-    color: #fc1870;
-    font-family: poetsenOne;
-    text-align: center;
+#closeForm {
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    color: #171C73;
+    background-color: white;
     border: none;
     border-radius: 100px;
-    padding: 10px 20px;
-} */
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: poetsenOne;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#closeForm:hover {
+    cursor: pointer;
+}
 
+/* Note Display */
+#notes {
+    width: 80vw;
+    height: 95vh;
+    margin-left: 250px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}

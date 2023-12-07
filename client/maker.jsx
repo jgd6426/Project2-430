@@ -17,23 +17,22 @@ const handleNote = (e) => {
         return false;
     }
 
-    helper.closeForm();
     helper.sendPost(e.target.action, {title, due, info}, loadNotesFromServer);
+    helper.closeForm();
 
     return false;
 };
 
-/* Create a functional component to create our Add Domo form.
+/* Create a functional component to create our Add Note form.
     Similar to the signup and login forms. */
 const NoteForm = (props) => {
     const [openForm, setOpenForm] = useState(false);
 
     return (
         <div className="noteFormArea">
-            <button className="makeNoteBtn" onClick={() => setOpenForm(!openForm)}>+</button>
+            <button className="makeNoteBtn" onClick={() => setOpenForm(true)}>+</button>
             {openForm && <form id="noteForm" 
-                onSubmit={handleNote} 
-                closeForm={() => setOpenForm(false)}
+                onSubmit={handleNote}
                 name="noteForm" 
                 action="/maker" 
                 method="POST" 
@@ -43,6 +42,8 @@ const NoteForm = (props) => {
                 <input id="noteDue" type="text" name="due" placeholder="Deadline" autoComplete="off"/>
                 <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea>
                 <input className="makeNoteSubmit" type="submit" value="Pin"/>
+
+                <button id="closeForm" onClick={() => setOpenForm(false)}>x</button>
 
                 <div id="message" class='appMessage hidden'>
                     <h3><span id="errorMessage"></span></h3>
