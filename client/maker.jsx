@@ -67,9 +67,10 @@ const NoteList = (props) => {
         return (
             <div key={note._id} className="note">
                 {}
-                <h3 className="noteTitle"> Title: {note.title} </h3>
-                <h3 className="noteDue"> Due: {note.due} </h3>
-                <h3 className="noteInfo"> Info: {note.info} </h3>
+                <div id="notePin"></div>
+                <h3 className="noteTitle">{note.title} </h3>
+                <h3 className="noteInfo">{note.info} </h3>
+                <h3 className="noteDue">{note.due} </h3>
                 {}
             </div>
         );
