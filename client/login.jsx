@@ -47,9 +47,6 @@ const handleSignup = (e) => {
 /* Create our React components that will use the event handlers to render the login page*/
 const LoginWindow = (props) => {
     return (
-        <nav id="welcomeForm">
-            <div class="navlink"><a id="signupButton" href="/signup">Sign up</a></div>
-        </nav>,
         <form id="loginForm" 
             name="loginForm" 
             onSubmit={handleLogin} 
@@ -66,17 +63,14 @@ const LoginWindow = (props) => {
             </div>
 
             <input className="formSubmit" type="submit" value="Log In" />
-        </form>
 
+        </form>
     );
 };
 
 /* Similar to LoginWindow() to render the signup page */
 const SignupWindow = (props) => {
     return (
-        // <nav>
-        //     <div class="navlink"><a id="loginButton" href="/login">Login</a></div>
-        // </nav>,
         <form id="signupForm" 
             name="signupForm" 
             onSubmit={handleSignup} 
