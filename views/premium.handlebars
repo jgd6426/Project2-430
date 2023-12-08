@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
@@ -10,9 +11,22 @@
 </head>
 <body>
   <nav id="appNav">
-    <div id="logoutNav" class="navlink"><a href="/logout">Log out</a></div>
-  </nav>
+    <section id="topNav">
+      <div id="navTitle"><p>NoteBoard</p></div>
+      <div id="userPhoto"><img src="" alt=""></div>
+      <div id="pin"></div>
+      <div id="userName"><p>🜲 Username</p></div>
+    </section>
+    <section id="bottomNav">
+      <div id="myBoard" class="navlink"><a href="#">My Board</a></div>
+      {{!-- <div id="myBoard" class="navlink"><a href="#">Finished</a></div> --}}
 
+      <div id="premiumInfo"><p>Thanks for being a premium user!<br>We'd be sad to see you go :(</p></div>
+      <div id="premiumNav" class="navlink"><a href="#">Unsubscribe</a></div>
+      <div id="logoutNav" class="navlink"><a href="/logout">Log out</a></div>
+    </section>
+  </nav>
+  <section id="pageTitle">My Board</section>
   <section id="makeNotes">
 
   </section>
@@ -20,9 +34,7 @@
     
   </section>
 
-  <div id="message" class='hidden'>
-    <h3><span id="errorMessage"></span></h3>
-  </div>
+  {{!-- <button class="makeNoteBtn">+</button> --}}
   <script src="/assets/appBundle.js"></script>
 </body>
 </html>
