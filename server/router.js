@@ -14,6 +14,8 @@ const router = (app) => {
   app.get('/maker', mid.requiresLogin, controllers.Note.makerPage);
   app.post('/maker', mid.requiresLogin, controllers.Note.makeNote);
 
+  app.post('/delete', mid.requiresLogin, controllers.Note.deleteNote);
+
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

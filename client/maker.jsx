@@ -67,7 +67,7 @@ const NoteList = (props) => {
         return (
             <div key={note._id} className="note">
                 {}
-                <div id="notePin"></div>
+                <div id="notePin" onClick={helper.deleteNote}></div>
                 <h3 className="noteTitle">{note.title} </h3>
                 <h3 className="noteInfo">{note.info} </h3>
                 <h3 className="noteDue">{note.due} </h3>

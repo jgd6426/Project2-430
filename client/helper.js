@@ -40,13 +40,13 @@ const hideError = () => {
     document.getElementById('message').classList.add('hidden');
 };
 
-const closeForm = () => {
-    document.getElementById('noteForm').setState(false);
+const deleteNote = () => {
+    alert("delete");
 }
 
 module.exports = {
     handleError,
     sendPost,
     hideError,
-    closeForm
+    deleteNote,
 };

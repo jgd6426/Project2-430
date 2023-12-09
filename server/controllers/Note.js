@@ -48,8 +48,28 @@ const getNotes = async (req, res) => {
   }
 };
 
+const deleteNote = async (req, res) => {
+  const query = req.session.note._id;
+
+  try {
+    alert(query);
+    Note.deleteOne(query, (err) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: 'Error deleting note.' });
+      }
+      return res.status(200).json({ message: 'Note deleted successfully.' });
+    });
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'Error deleting note.' });
+  }
+};
+
 module.exports = {
   makerPage,
   makeNote,
   getNotes,
+  deleteNote,
 };
