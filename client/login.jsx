@@ -44,6 +44,55 @@ const handleSignup = (e) => {
     return false;
 };
 
+/* */
+const LoginDirectory = (props) => {
+    const zstyle = {
+        zIndex: 1
+    };
+
+    return (
+        <form id="loginDirectory" 
+            name="loginDirectory" 
+            // onSubmit={} 
+            action="/login" 
+            method="GET" 
+            className="subForm"
+        >
+            <div className="elements">
+                <label class="welcome">Welcome!</label>
+                <p class="directQ">Already have an account?</p>
+                <input id="loginButton" className="formSubmit" type="submit" value="Log In" style={zstyle} />
+                <input id="signupButton" className="formSubmit hidden" disabled type="submit" value="Sign Up" />
+            </div>
+        </form>
+    );
+};
+
+/* */
+const SignupDirectory = (props) => {
+    const zstyle = {
+        zIndex: 1
+    };
+
+    return (
+        <form id="signupDirectory" 
+            name="signupDirectory" 
+            // onSubmit={} 
+            action="/signup" 
+            method="POST" 
+            className="subForm"
+        >
+            <div className="elements">
+                <label class="welcome">Welcome!</label>
+                <p class="directQ">Don't have an account?</p>
+                <input id="signupButton" className="formSubmit" type="submit" value="Sign Up" style={zstyle} />
+                <input id="loginButton" className="formSubmit hidden" disabled type="submit" value="Log In" />
+            </div>
+        </form>
+    );
+};
+
+
 /* Create our React components that will use the event handlers to render the login page*/
 const LoginWindow = (props) => {
     return (
@@ -97,6 +146,14 @@ const SignupWindow = (props) => {
     also tell it to render the LoginWindow immediately so that
     there is something on the page when the user first loads it. */
 const init = () => {
+    // const loginButton = document.getElementById('loginButton');
+    // const signupButton = document.getElementById('signupButton');
+    ReactDOM.render(<LoginWindow />, 
+        document.getElementById('content'));
+
+    ReactDOM.render(<SignupDirectory />, 
+        document.getElementById('directory'));
+
     const loginButton = document.getElementById('loginButton');
     const signupButton = document.getElementById('signupButton');
 
@@ -104,6 +161,8 @@ const init = () => {
         e.preventDefault();
         ReactDOM.render(<LoginWindow />, 
             document.getElementById('content'));
+        ReactDOM.render(<SignupDirectory />, 
+            document.getElementById('directory'));
         return false;
     });
 
@@ -111,11 +170,10 @@ const init = () => {
         e.preventDefault();
         ReactDOM.render(<SignupWindow />, 
             document.getElementById('content'));
+        ReactDOM.render(<LoginDirectory />, 
+            document.getElementById('directory'));
         return false;
     });
-
-    ReactDOM.render(<LoginWindow />, 
-        document.getElementById('content'));
 };
 
 window.onload = init;
