@@ -57,9 +57,22 @@ const signup = async (req, res) => {
   }
 };
 
+const getAccount = async (req, res) => {
+  try {
+    const query = { owner: req.session.account._id };
+    const docs = await Account.find(query).select('username password').lean().exec();
+
+    return res.json({ account: docs });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'Error retrieving account information.' });
+  }
+}
+
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
+  getAccount,
 };

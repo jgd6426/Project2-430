@@ -1,7 +1,6 @@
 const helper = require('./helper.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
-const useState = require('react').useState;
 
 /* Add our React components for our Note app */
 const handleNote = (e) => {
@@ -26,7 +25,7 @@ const handleNote = (e) => {
 /* Create a functional component to create our Add Note form.
     Similar to the signup and login forms. */
 const NoteForm = (props) => {
-    const [openForm, setOpenForm] = useState(false);
+    const [openForm, setOpenForm] = React.useState(false);
 
     return (
         <div className="noteFormArea">
@@ -94,6 +93,15 @@ const loadNotesFromServer = async () => {
         document.getElementById('notes')
     );
 };
+
+// const deleteNote = async () => {
+//     const response = await fetch('/getNotes');
+//     const data = await response.json();
+//     ReactDOM.render(
+//         <NoteList notes={data.notes} />,
+//         document.getElementById('notes')
+//     );
+// };
 
 /* Render the DomoForm and DomoList components, 
     and have the client request the list of domos from the server. */
