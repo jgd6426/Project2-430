@@ -31,8 +31,8 @@ const makeNote = async (req, res) => {
   }
 };
 
-/* Retrieve all of the domos belonging to the logged in user.
-  Allows us to get JSON responses of Domos for a user, to then
+/* Retrieve all of the notes belonging to the logged in user.
+  Allows us to get JSON responses of Notes for a user, to then
   allow the client app to update dynamically using React.
   Able to dynamically grab updates from the server and immediately
   update the UI on screen. */

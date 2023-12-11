@@ -57,9 +57,21 @@ const signup = async (req, res) => {
   }
 };
 
+const getUserName = async (req, res) => {
+  try {
+    const query = { owner: req.session.account.username };
+
+    return res.json({ account: query });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'Error retrieving account' });
+  }
+};
+
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
+  getUserName,
 };

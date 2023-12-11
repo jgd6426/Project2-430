@@ -26,6 +26,9 @@ const handlePass = (e) => {
     e.preventDefault();
     helper.hideError();
 
+    // get user's current password from server
+    const userPass = helper.getUserName();
+    console.log(userPass); 
     const oldPass = e.target.querySelector('#oldPass').value;
     const newPass = e.target.querySelector('#newPass').value;
 
@@ -35,12 +38,17 @@ const handlePass = (e) => {
     }
 
     if (oldPass === newPass) {
-        helper.handleError('New passowrd cannot be the same as current password');
+        helper.handleError('New password cannot be the same as current password');
+        return false;
+    }
+
+    if (oldPass != userPass) {
+        helper.handleError('Current password is incorrect');
         return false;
     }
 
     // helper.sendPost(e.target.action, {title, due, info}, changeUserPass);
-    helper.handleError('Password change successful!');
+    helper.handleError('Proceed to change password');
 
     return false;
 };
@@ -157,14 +165,14 @@ const PassForm = (props) => {
             {openForm && <form id="passForm" 
                 onSubmit={handlePass}
                 name="passForm" 
-                // action="/maker" 
+                action="/getUserName" 
                 method="POST" 
                 className="passForm"
             >
                 {/* <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
                 <input id="noteDue" type="text" name="due" placeholder="Deadline" autoComplete="off"/>
                 <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea> */}
-                <label className='header'>Want to change your password?</label>
+                <label id='passFormHeader'>Change Password:</label>
                 <input id="oldPass" type="text" name="oldPass" placeholder="Current Password" autoComplete="off"/>
                 <input id="newPass" type="text" name="newPass" placeholder="New Password" autoComplete="off"/>
                 <input className="changePassSubmit" type="submit" value="Submit"/>
@@ -179,9 +187,67 @@ const PassForm = (props) => {
     );
 };
 
+// const Username = (props) => {
+//     const userNode = helper.getUserName();
+//     return (
+//         <div className="username">
+//             <p>{userNode}</p>
+//         </div>
+//     );
+// };
+
+/* Create a component to display the Username */
+const UserName = (props) => {
+    if (props.account.length === 0) {
+        return (
+            <div className="username">
+                <p>No Name</p>
+            </div>
+        );
+    }
+
+    const nameNodes = props.account.map(name => {
+        return (
+            <div className="name">
+                <p className="usersname">{name}</p>
+            </div>
+        );
+    });
+
+    return (
+        <div className="userName">
+            {nameNodes}
+        </div>
+    );
+};
+
+/* Load the list of notes from the server.
+    When it gets a new list back, it should rerender the noteList component
+    so that it is up to date with the data. */
+const loadNameFromServer = async () => {
+    const response = await fetch('/getUserName');
+    const data = await response.json();
+    ReactDOM.render(
+        <UserName name={data.account} />,
+        document.getElementById('userName')
+    );
+};
+
 /* Render the NoteForm and NoteList components, 
     and have the client request the list of notes from the server. */
 const init = () => {
+    // console.log(helper.getUserName());
+    // ReactDOM.render(
+    //     <Username />,
+    //     document.getElementById('userName')
+    // );
+    ReactDOM.render(
+        <UserName name={[]} />,
+        document.getElementById('userName')
+    );
+
+    loadNameFromServer();
+
     ReactDOM.render(
         <PassForm />,
         document.getElementById('changePassBtn')

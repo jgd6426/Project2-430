@@ -44,11 +44,18 @@ const deleteNote = () => {
     // alert("delete");
 }
 
-// const getCurrentUser = async () => {
-//     const currentUser = await Parse.User.current();
-//     console.log("username: " + currentUser);
-//     return currentUser;
-// };
+// get current user's password from server and return
+const getUserName = async (url) => {
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const result = await response.json();
+    return result;
+};
 
 module.exports = {
     handleError,
@@ -56,4 +63,5 @@ module.exports = {
     hideError,
     deleteNote,
     // getCurrentUser,
+    getUserName,
 };
