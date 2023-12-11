@@ -22,6 +22,29 @@ const handleNote = (e) => {
     return false;
 };
 
+const handlePass = (e) => {
+    e.preventDefault();
+    helper.hideError();
+
+    const oldPass = e.target.querySelector('#oldPass').value;
+    const newPass = e.target.querySelector('#newPass').value;
+
+    if (!oldPass || !newPass) {
+        helper.handleError('Please fill out all information');
+        return false;
+    }
+
+    if (oldPass === newPass) {
+        helper.handleError('New passowrd cannot be the same as current password');
+        return false;
+    }
+
+    // helper.sendPost(e.target.action, {title, due, info}, changeUserPass);
+    helper.handleError('Password change successful!');
+
+    return false;
+};
+
 /* Delete our React components from our Note app */
 const handleDelete = (e) => {
     e.preventDefault();
@@ -64,7 +87,7 @@ const NoteForm = (props) => {
                 <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea>
                 <input className="makeNoteSubmit" type="submit" value="Pin"/>
 
-                <button id="closeForm" onClick={() => setOpenForm(false)}>x</button>
+                <button className="closeForm" onClick={() => setOpenForm(false)}>x</button>
 
                 <div id="message" class='appMessage hidden'>
                     <h3><span id="errorMessage"></span></h3>
@@ -125,9 +148,45 @@ const loadNotesFromServer = async () => {
     );
 };
 
+const PassForm = (props) => {
+    const [openForm, setOpenForm] = React.useState(false);
+
+    return (
+        <div className="passFormArea">
+            <button className="changePassBtn" onClick={() => setOpenForm(true)}>*</button>
+            {openForm && <form id="passForm" 
+                onSubmit={handlePass}
+                name="passForm" 
+                // action="/maker" 
+                method="POST" 
+                className="passForm"
+            >
+                {/* <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
+                <input id="noteDue" type="text" name="due" placeholder="Deadline" autoComplete="off"/>
+                <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea> */}
+                <label className='header'>Want to change your password?</label>
+                <input id="oldPass" type="text" name="oldPass" placeholder="Current Password" autoComplete="off"/>
+                <input id="newPass" type="text" name="newPass" placeholder="New Password" autoComplete="off"/>
+                <input className="changePassSubmit" type="submit" value="Submit"/>
+
+                <button className="closeForm" onClick={() => setOpenForm(false)}>x</button>
+
+                <div id="message" class='appMessage hidden'>
+                    <h3><span id="errorMessage"></span></h3>
+                </div>
+            </form>}
+        </div>
+    );
+};
+
 /* Render the NoteForm and NoteList components, 
     and have the client request the list of notes from the server. */
 const init = () => {
+    ReactDOM.render(
+        <PassForm />,
+        document.getElementById('changePassBtn')
+    );
+
     ReactDOM.render(
         <NoteForm />,
         document.getElementById('makeNotes')

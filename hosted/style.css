@@ -299,7 +299,7 @@
     text-decoration: none;
     background-color: #C0C3F6;
 }
-.makeNoteBtn {
+.makeNoteBtn{
     width: 80px;
     height: 80px;
     background-color: #9FA3E7;
@@ -319,6 +319,22 @@
 .makeNoteBtn:hover {
     cursor: pointer;
 }
+.changePassBtn {
+    background: none;
+    border-radius: 100px;
+    border: none;
+    color: #9FA3E7;
+    font-size: 60px;
+    text-decoration: none;
+    font-family: poetsenOne;
+    position: absolute;
+    top: 14px;
+    left: 250px;
+    z-index: 1;
+}
+.changePassBtn:hover {
+    cursor: pointer;
+}
 /* Note Making Form */
 #makeNotes {
     width: 80vw;
@@ -336,7 +352,7 @@
     align-items: flex-end;
     justify-content: flex-end;
 }
-#noteForm {
+#noteForm{
     width: 500px;
     height: 500px;
     border: none;
@@ -425,7 +441,7 @@
     margin: 0px 10px;
     top: 10px;
 }
-#closeForm {
+.closeForm {
     width: 24px;
     height: 24px;
     font-size: 18px;
@@ -441,7 +457,7 @@
     align-items: center;
     justify-content: center;
 }
-#closeForm:hover {
+.closeForm:hover {
     cursor: pointer;
 }
 
@@ -537,4 +553,28 @@
 }
 #notePin:hover {
     cursor: pointer;
+}
+
+#passForm {
+    width: 500px;
+    height: 300px;
+    border: none;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: space-between;
+    background-color: #F2F2FA;
+    box-shadow: 0px 4px 80px 40px rgba(0, 0, 0, 0.5);
+    font-family: poetsenOne;
+    color: #171C73;
+    position: absolute;
+    top: 80px;
+    left: 20%;
+    z-index: 2;
+}
+#passForm input {
+    outline: none;
+    font-family: poetsenOne;
 }
