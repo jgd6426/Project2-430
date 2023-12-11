@@ -41,12 +41,19 @@ const hideError = () => {
 };
 
 const deleteNote = () => {
-    alert("delete");
+    // alert("delete");
 }
+
+// const getCurrentUser = async () => {
+//     const currentUser = await Parse.User.current();
+//     console.log("username: " + currentUser);
+//     return currentUser;
+// };
 
 module.exports = {
     handleError,
     sendPost,
     hideError,
     deleteNote,
+    // getCurrentUser,
 };

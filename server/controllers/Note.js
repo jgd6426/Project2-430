@@ -49,7 +49,7 @@ const getNotes = async (req, res) => {
 };
 
 const deleteNote = async (req, res) => {
-  const query = req.session.note._id;
+  const query = { owner: req.session.account._id };
 
   try {
     return Note.deleteOne(query, (err) => {
