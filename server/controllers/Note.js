@@ -52,8 +52,7 @@ const deleteNote = (req, res, id) => {
   try {
     Note.findByIdAndDelete({ _id: id });
     return res.status(200).json({ message: 'Note deleted.' });
-  }
-  catch (err) {
+  } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error deleting note.' });
   }
