@@ -7,6 +7,13 @@ const handleError = (message) => {
     document.getElementById('message').classList.remove('hidden');
 };
 
+/* Reset input forms for when user submits form*/
+const clearNoteFormInputs = () => {
+    document.getElementById('noteTitle').value = "";
+    document.getElementById('noteDue').value = "";
+    document.getElementById('noteInfo').value = "";
+};
+
 /* Sends post requests to the server using fetch. Will look for various
    entries in the response JSON object, and will handle them appropriately.
 */
@@ -40,28 +47,10 @@ const hideError = () => {
     document.getElementById('message').classList.add('hidden');
 };
 
-const deleteNote = () => {
-    // alert("delete");
-}
-
-// get current user's password from server and return
-const getUserName = async (url) => {
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    const result = await response.json();
-    return result;
-};
 
 module.exports = {
     handleError,
     sendPost,
     hideError,
-    deleteNote,
-    // getCurrentUser,
-    getUserName,
+    clearNoteFormInputs,
 };

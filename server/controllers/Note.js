@@ -48,18 +48,12 @@ const getNotes = async (req, res) => {
   }
 };
 
-const deleteNote = async (req, res) => {
-  const query = { owner: req.session.account._id };
-
+const deleteNote = (req, res, id) => {
   try {
-    return Note.deleteOne(query, (err) => {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({ error: 'Error deleting note.' });
-      }
-      return res.status(200).json({ message: 'Note deleted successfully.' });
-    });
-  } catch (err) {
+    Note.findByIdAndDelete({ _id: id });
+    return res.status(200).json({ message: 'Note deleted.' });
+  }
+  catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error deleting note.' });
   }

@@ -15,20 +15,21 @@ const handleNote = (e) => {
         helper.handleError('Title is required!');
         return false;
     }
+    helper.clearNoteFormInputs();
+    helper.handleError('Note added!');
 
     helper.sendPost(e.target.action, {title, due, info}, loadNotesFromServer);
-    // helper.closeForm();
 
     return false;
 };
 
+/* Handle when the user changes their password */
 const handlePass = (e) => {
     e.preventDefault();
     helper.hideError();
 
     // get user's current password from server
-    const userPass = helper.getUserName();
-    console.log(userPass); 
+    // const userPass = await fetch('/getPass');
     const oldPass = e.target.querySelector('#oldPass').value;
     const newPass = e.target.querySelector('#newPass').value;
 
@@ -42,37 +43,27 @@ const handlePass = (e) => {
         return false;
     }
 
-    if (oldPass != userPass) {
-        helper.handleError('Current password is incorrect');
-        return false;
-    }
+    // if (oldPass != userPass) {
+    //     helper.handleError('Current password is incorrect');
+    //     return false;
+    // }
 
-    // helper.sendPost(e.target.action, {title, due, info}, changeUserPass);
     helper.handleError('Proceed to change password');
 
     return false;
 };
 
-/* Delete our React components from our Note app */
-const handleDelete = (e) => {
-    e.preventDefault();
-    // helper.hideError();
-
-    const title = e.target.querySelector('.noteTitle').value;
-    const due = e.target.querySelector('.noteDue').value;
-    const info = e.target.querySelector('.noteInfo').value;
-
-    // for (let i of document.querySelectorAll('.note')) {
-    //     if (i.querySelector('.noteTitle').innerHTML === title && i.querySelector('.noteDue').innerHTML === due && i.querySelector('.noteInfo').innerHTML === info) {
-    //         i.remove();
-    //     }
-    // }
-
-    // helper.sendPost(e.target.action, {e}, deleteNotesFromServer);
-    // helper.deleteForm();
-    console.log("Delete button clicked");
-
-    return false;
+/* Delete note from our app */
+const deleteNote = async (id) => {
+    // make a delete request to the server using fetch
+    await fetch('/deleteNote/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({id: id}),
+    });
+    loadNotesFromServer();
 };
 
 /* Create a functional component to create our Add Note form.
@@ -117,18 +108,9 @@ const NoteList = (props) => {
 
     const noteNodes = props.notes.map(note => {
         return (
-            <div key={note._id} className="note">
+            <div id={note._id} key={note._id} className="note">
                 {}
-                {/* <div id="notePin" onClick={helper.deleteNote}></div> */}
-                <form id="notePin" 
-                    // onSubmit={handleDelete}
-                    // onClick={() => {console.log("Delete button clicked")}}
-                    onClick={handleDelete}
-                    name="notePin" 
-                    // action="/delete" 
-                    method="POST" 
-                    className="notePin">
-                </form>
+                <button id="notePin" onClick={() => deleteNote(note._id)}></button>
                 <h3 className="noteTitle">{note.title} </h3>
                 <h3 className="noteInfo">{note.info} </h3>
                 <h3 className="noteDue">{note.due} </h3>
@@ -156,6 +138,8 @@ const loadNotesFromServer = async () => {
     );
 };
 
+/* Create a functional component to create our Password Change Note form.
+    Similar to the add note, signup and login forms. */
 const PassForm = (props) => {
     const [openForm, setOpenForm] = React.useState(false);
 
@@ -169,9 +153,6 @@ const PassForm = (props) => {
                 method="POST" 
                 className="passForm"
             >
-                {/* <input id="noteTitle" type="text" name="title" placeholder="Note Title" autoComplete="off"/>
-                <input id="noteDue" type="text" name="due" placeholder="Deadline" autoComplete="off"/>
-                <textarea id="noteInfo" name="info" placeholder="Info" autoComplete="off" maxlength="285"></textarea> */}
                 <label id='passFormHeader'>Change Password:</label>
                 <input id="oldPass" type="text" name="oldPass" placeholder="Current Password" autoComplete="off"/>
                 <input id="newPass" type="text" name="newPass" placeholder="New Password" autoComplete="off"/>
@@ -187,66 +168,22 @@ const PassForm = (props) => {
     );
 };
 
-// const Username = (props) => {
-//     const userNode = helper.getUserName();
-//     return (
-//         <div className="username">
-//             <p>{userNode}</p>
-//         </div>
-//     );
-// };
-
-/* Create a component to display the Username */
-const UserName = (props) => {
-    if (props.account.length === 0) {
-        return (
-            <div className="username">
-                <p>No Name</p>
-            </div>
-        );
-    }
-
-    const nameNodes = props.account.map(name => {
-        return (
-            <div className="name">
-                <p className="usersname">{name}</p>
-            </div>
-        );
-    });
-
+/* Add our React components for our ad space */
+const AdSpace = (props) => {
     return (
-        <div className="userName">
-            {nameNodes}
+        <div className="adSpace">
+            <h3 className="adSpaceTitle">Ad Space</h3>
         </div>
-    );
-};
-
-/* Load the list of notes from the server.
-    When it gets a new list back, it should rerender the noteList component
-    so that it is up to date with the data. */
-const loadNameFromServer = async () => {
-    const response = await fetch('/getUserName');
-    const data = await response.json();
-    ReactDOM.render(
-        <UserName name={data.account} />,
-        document.getElementById('userName')
     );
 };
 
 /* Render the NoteForm and NoteList components, 
     and have the client request the list of notes from the server. */
 const init = () => {
-    // console.log(helper.getUserName());
-    // ReactDOM.render(
-    //     <Username />,
-    //     document.getElementById('userName')
-    // );
     ReactDOM.render(
-        <UserName name={[]} />,
-        document.getElementById('userName')
+        <AdSpace />,
+        document.getElementById('adSpace')
     );
-
-    loadNameFromServer();
 
     ReactDOM.render(
         <PassForm />,

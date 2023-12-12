@@ -44,7 +44,7 @@ const handleSignup = (e) => {
     return false;
 };
 
-/* */
+/* Create our React components that will direct the user to the log in page */
 const LoginDirectory = (props) => {
     const zstyle = {
         zIndex: 1
@@ -53,7 +53,6 @@ const LoginDirectory = (props) => {
     return (
         <form id="loginDirectory" 
             name="loginDirectory" 
-            // onSubmit={} 
             action="/login" 
             method="GET" 
             className="subForm"
@@ -68,7 +67,7 @@ const LoginDirectory = (props) => {
     );
 };
 
-/* */
+/* Create our React components that will direct the user to the sign up page */
 const SignupDirectory = (props) => {
     const zstyle = {
         zIndex: 1
@@ -77,7 +76,6 @@ const SignupDirectory = (props) => {
     return (
         <form id="signupDirectory" 
             name="signupDirectory" 
-            // onSubmit={} 
             action="/signup" 
             method="POST" 
             className="subForm"
@@ -146,8 +144,6 @@ const SignupWindow = (props) => {
     also tell it to render the LoginWindow immediately so that
     there is something on the page when the user first loads it. */
 const init = () => {
-    // const loginButton = document.getElementById('loginButton');
-    // const signupButton = document.getElementById('signupButton');
     ReactDOM.render(<LoginWindow />, 
         document.getElementById('content'));
 
